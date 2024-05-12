@@ -343,5 +343,41 @@ VALUES
 (17, 1, 4500, '2024-05-20');
 
 
+CREATE TABLE sports_items(
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(100),
+    brand_name VARCHAR(50),
+    item_price INT(6)
+);  
+
+
+
+INSERT INTO sports_items (item_name, brand_name, item_price)
+VALUES
+("Running Shoes", "Nike", 8000),
+("Basketball", "Spalding", 2000),
+("Yoga Mat", "Lululemon", 5000),
+("Gym Bag", "Under Armour", 4000),
+("Swimming Goggles", "Speedo", 2500),
+("Football Jersey", "Adidas", 3000),
+("Tennis Racket", "Wilson", 6000),
+("Dumbbell Set", "Bowflex", 10000),
+("Cycling Helmet", "Giro", 3500),
+("Soccer Cleats", "Puma", 7000),
+("Golf Club Set", "Callaway", 12000),
+("Jump Rope", "Everlast", 1500),
+("Compression Leggings", "Nike", 4500),
+("Water Bottle", "CamelBak", 2000),
+("Sweatband Set", "Nike", 1000),
+("Resistance Bands", "TheraBand", 3000),
+("Sports Sunglasses", "Oakley", 6000),
+("Wrist Support Brace", "McDavid", 2500),
+("Treadmill", "NordicTrack", 50000);
+
+
+
+
+
+
 
 
