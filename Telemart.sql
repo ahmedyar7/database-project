@@ -2,12 +2,16 @@ CREATE database telemart;
 use telemart;
 
 CREATE table applicances(
-    item_id int primary key auto_increment,
+
+    item_id int auto_increment,
+    item_type VARCHAR(50) DEFAULT 'appliance',
+    
     item_name varchar(100),
-    item_price int
+    item_price int,
+    
+     PRIMARY KEY (item_id, item_type)
 );
 
--- Main Appliance table 
 
 insert into applicances(item_name,item_price)
 values
@@ -31,12 +35,21 @@ values
 
 -- Sub appliance table
 Create table washing_machines(
-item_id int,
+
+-- PK 
+item_id int auto_increment,
+item_type VARCHAR(50) DEFAULT 'appliance',
+-- FK
+washing_machines_item_id INT  , 
+
 item_name varchar(100),
 item_price int,
-FOREIGN KEY(item_id) REFerences applicances(item_id)
+
+PRIMARY KEY (item_id, item_type) , 
+FOREIGN KEY(washing_machines_item_id) REFerences applicances(item_id)
+
 );
-insert into washing_machines(item_id, item_name,item_price) 
+insert into washing_machines(washing_machines_item_id, item_name,item_price) 
 values
 (1,"Dawalance Fully loaded Automatic washing machine",100000),
 (2,"Kenwood spin dryer wasahing machine",124521),
@@ -49,12 +62,19 @@ values
 
 
 Create table cooling_and_heating(
-item_id int,
+-- PK 
+item_id int auto_increment,
+item_type VARCHAR(50) DEFAULT 'appliance',
+
+cooling_and_heating_item_id int,
 item_name varchar(100),
 item_price int,
-FOREIGN KEY(item_id) REFerences applicances(item_id)
+
+PRIMARY KEY (item_id, item_type) , 
+FOREIGN KEY(cooling_and_heating_item_id) REFerences applicances(item_id)
 );
-insert into cooling_and_heating(item_id, item_name,item_price) 
+
+insert into cooling_and_heating(cooling_and_heating_item_id , item_name,item_price) 
 values
 (1,"Hot tap water free installation",100000),
 (2,"Gree eco series inverter ac",224521),
@@ -64,13 +84,20 @@ values
 (6,"Ball design room heater and cooler",12531),
 (7,"Speaker desing room heater",35123);
 
+
 Create table power_and_lighting(
-item_id int,
+item_id int auto_increment,
+item_type VARCHAR(50) DEFAULT 'appliance',
+
+power_and_lighting_item_id int,
 item_name varchar(100),
 item_price int,
-FOREIGN KEY(item_id) REFerences applicances(item_id)
+
+PRIMARY KEY (item_id, item_type) , 
+FOREIGN KEY(power_and_lighting_item_id) REFerences applicances(item_id)
 );
-insert into cooling_and_heating(item_id, item_name,item_price) 
+
+insert into cooling_and_heating(power_and_lighting_item_id , item_name,item_price) 
 values
 (1,"Jesco Titanium series generator",100000),
 (2,"Jesco Titanium series generator TXL-5000",224521),
@@ -83,9 +110,14 @@ values
 
 
 CREATE table automotives(
-    item_id int primary key auto_increment,
-    item_name varchar(100),
-    item_price int
+
+item_id int auto_increment,
+item_type VARCHAR(50) DEFAULT 'automotives',
+
+item_name varchar(100),
+item_price int,
+
+PRIMARY KEY (item_id, item_type) 
 );
 
 -- Main Automotive table table 
@@ -114,10 +146,15 @@ values
 
 
 CREATE table Tvs(
-    item_id int primary key auto_increment,
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'Tvs',
+
     item_name varchar(100),
     brand_name varchar(100),
-    item_price int
+    item_price int,
+    
+    PRIMARY KEY (item_id, item_type) 
+
 );
 -- Main Automotive table table 
 
@@ -142,10 +179,15 @@ VALUES
 ("Projector TV 100 inches", "Sony", 900000);
 
 CREATE TABLE MedicalItems(
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'MedicalItems',
+
     item_name VARCHAR(100),
     brand_name VARCHAR(50),
-    item_price INT(6)
+    item_price INT,
+    
+	PRIMARY KEY (item_id, item_type) 
+
 );
 
 -- Fill the MedicalItems table with medical items and their respective prices
@@ -174,7 +216,7 @@ CREATE TABLE MedicalSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
     quantity INT,
-    total_price INT(5),
+    total_price INT,
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES MedicalItems(item_id)
 );
@@ -191,10 +233,14 @@ VALUES
 (17, 1, 4000, '2024-05-20');
 
 CREATE TABLE gaming_and_computer(
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'gaming_and_computer',
+
     item_name VARCHAR(100),
     brand_name VARCHAR(50),
-    item_price INT(6)
+    item_price INT,
+    
+	PRIMARY KEY (item_id, item_type) 
 ); 
 
 
@@ -224,7 +270,7 @@ CREATE TABLE GamingSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
     quantity INT,
-    total_price INT(6),
+    total_price INT,
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES gaming_and_computer(item_id)
 );
@@ -241,12 +287,14 @@ VALUES
 (17, 3, 15000, '2024-05-20');
 
 CREATE TABLE mobile_and_tablets(
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'mobile_and_tablets',
+	PRIMARY KEY (item_id, item_type),
+    
     item_name VARCHAR(100),
     brand_name VARCHAR(50),
-    item_price INT(6)
+    item_price INT
 ); 
-
 
 INSERT INTO mobile_and_tablets(item_name, brand_name, item_price)
 VALUES
@@ -292,10 +340,13 @@ VALUES
 (17, 3, 165000, '2024-05-20');
 
 CREATE TABLE men_fashion(
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'men_fashion',
+	PRIMARY KEY (item_id, item_type),  
+    
     item_name VARCHAR(100),
     brand_name VARCHAR(50),
-    item_price INT(6)
+    item_price INT
 ); 
 
 
@@ -344,10 +395,13 @@ VALUES
 
 
 CREATE TABLE sports_items(
-    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'sports_items',
+	PRIMARY KEY (item_id, item_type) ,
+    
     item_name VARCHAR(100),
     brand_name VARCHAR(50),
-    item_price INT(6)
+    item_price INT
 );  
 
 
@@ -376,8 +430,102 @@ VALUES
 
 
 
+-- Primary table for kids product
+CREATE TABLE Kids_Product (
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'Kids_Product',
+	PRIMARY KEY (item_id, item_type) ,
+    
+	item_name Varchar(200),
+	item_prince INT
+ );
+
+Insert Into Kids_Product  (item_name,item_prince)Value 
+("Mini Merc Car" , 5000) ,
+("Writing Tablet" , 499) ,
+("Nail Trimmer" , 499) ,
+("RC Metal Car" , 3699) ,
+("Torch Lamp" , 299) ,
+("Shooter Glove Toy" , 2599);
+
+-- sub table for kids product 
+
+CREATE TABLE Ride_On_Toys (
+	item_id int auto_increment,
+	item_type VARCHAR(50) DEFAULT 'MedicalItems',
+	PRIMARY KEY (item_id, item_type) ,
+    
+	Ride_On_Toys_item_ID INT ,
+	item_name Varchar(200),
+	item_prince INT,
+ 
+ FOREIGN KEY(Ride_On_Toys_item_ID) REFerences Kids_Product(item_id)
+ );
+ 
+Insert Into Kids_Product  (item_name,item_prince)Value 
+(" Mercedes Ride On Jeep" , 35999) ,
+("BMW Kids Ride On Jeep" , 74999) ,
+("Kids 4 Wheels Ride On Jeep" , 40000) ,
+("BMW Kids Ride On Car" , 28999) ,
+("Minions Theme Ride On Car" , 19000) ,
+("Yamaha RR Ride On Bike" , 54000);
+
+ 
+ 
+ -- User account table 
+ 
+ CREATE TABLE Users (
+ User_ID INT Auto_increment Primary Key ,
+ User_Name Varchar(50),
+ User_Email Varchar(100),
+ User_Password Varchar(255),
+ User_Address Varchar(255)
+ );
+
+Insert Into Users  (User_Name , User_Email , User_Password , User_Address)  Value 
+("Hamza" , "Hamza@example.com","2342sdf"," XYZ Street Quetta") ,
+("Ahmed" , "Ahmed@example.com","2342sdf"," XYZ Street Quetta") ;
 
 
 
+
+-- Table for order --> order Tracker 
+CREATE TABLE Orders (
+ Order_id INT Auto_increment Primary Key ,
+ User_id INT,
+ 
+ item_type VARCHAR(50), 
+ item_id INT,
+
+ payment_method Varchar(100),
+ Total_amount INT,
+ shipping_address Varchar(255),
+ quantity INT,
+ order_date  Varchar(255), 
+ 
+	-- FK is the PK of users . ponting which user place xyz order    
+	FOREIGN KEY (User_id) REFERENCES Users(User_ID),    -- Links the order to the user who placed it
+ 
+ 
+	-- The composite foreign key links the order to the specific item (based on item_id and item_type)
+    -- The item_type helps select the appropriate table (e.g., appliances, Tvs, etc.) for tracking the item
+	FOREIGN KEY (item_id, item_type) REFERENCES applicances(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES  kids_product (item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES automotives(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES cooling_and_heating(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES  mobile_and_tablets(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES medicalitems(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computerpower_and_lighting(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES power_and_lighting(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES sports_items(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES tvs(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES ride_on_toys(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type)
+    );
+
+Insert Into Orders  ( User_id , item_type, item_id , payment_method , Total_amount , shipping_address , order_date)  Value 
+(1 , 'appliance',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ,
+(1 , 'washing_machines',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ,
+(2 , 'ride_on_toys',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ;
 
 
