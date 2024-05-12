@@ -190,4 +190,158 @@ VALUES
 (15, 2, 2000, '2024-05-18'),
 (17, 1, 4000, '2024-05-20');
 
+CREATE TABLE gaming_and_computer(
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(100),
+    brand_name VARCHAR(50),
+    item_price INT(6)
+); 
+
+
+
+INSERT INTO gaming_and_computer(item_name, brand_name, item_price)
+VALUES
+("Gaming Mouse", "Logitech", 6000),
+("Mechanical Keyboard", "Razer", 12000),
+("Gaming Headset", "SteelSeries", 8000),
+("Gaming Monitor", "ASUS", 25000),
+("Gaming Laptop", "MSI", 80000),
+("Graphics Card", "NVIDIA", 50000),
+("Gaming Chair", "DXRacer", 15000),
+("Gaming Mouse Pad", "Corsair", 2000),
+("Gaming Console", "Sony", 35000),
+("Gaming Router", "Netgear", 10000),
+("VR Headset", "Oculus", 30000),
+("PC Case", "NZXT", 7000),
+("Mechanical Gaming Keyboard", "Corsair", 13000),
+("Gaming Desk", "Arozzi", 25000),
+("Gaming Speakers", "Logitech", 6000),
+("Gaming Laptop Cooling Pad", "Cooler Master", 5000),
+("Streaming Microphone", "Blue", 8000),
+("Gaming Chair with RGB Lighting", "Secretlab", 30000);
+
+CREATE TABLE GamingSales(
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_id INT,
+    quantity INT,
+    total_price INT(6),
+    sale_date DATE,
+    FOREIGN KEY (item_id) REFERENCES gaming_and_computer(item_id)
+);
+INSERT INTO GamingSales(item_id, quantity, total_price, sale_date)
+VALUES
+(1, 2, 12000, '2024-05-01'),
+(3, 1, 8000, '2024-05-03'),
+(5, 1, 80000, '2024-05-05'),
+(7, 3, 75000, '2024-05-07'),
+(9, 2, 30000, '2024-05-10'),
+(11, 1, 25000, '2024-05-12'),
+(13, 4, 52000, '2024-05-15'),
+(15, 2, 12000, '2024-05-18'),
+(17, 3, 15000, '2024-05-20');
+
+CREATE TABLE mobile_and_tablets(
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(100),
+    brand_name VARCHAR(50),
+    item_price INT(6)
+); 
+
+
+INSERT INTO mobile_and_tablets(item_name, brand_name, item_price)
+VALUES
+("iPhone 13 Pro Max", "Apple", 120000),
+("Samsung Galaxy S21 Ultra", "Samsung", 100000),
+("Google Pixel 6 Pro", "Google", 90000),
+("OnePlus 9 Pro", "OnePlus", 80000),
+("iPad Pro 12.9-inch", "Apple", 80000),
+("Samsung Galaxy Tab S7+", "Samsung", 70000),
+("Microsoft Surface Pro 8", "Microsoft", 85000),
+("Xiaomi Mi Pad 5", "Xiaomi", 50000),
+("Sony Xperia 1 III", "Sony", 95000),
+("Huawei MatePad Pro 12.6", "Huawei", 60000),
+("Asus ROG Phone 5", "Asus", 70000),
+("Lenovo Tab P11 Pro", "Lenovo", 45000),
+("Apple iPad Air", "Apple", 60000),
+("Google Pixel Slate", "Google", 55000),
+("Samsung Galaxy Tab S6 Lite", "Samsung", 40000),
+("OnePlus 8T", "OnePlus", 55000),
+("Xiaomi Redmi Note 11 Pro", "Xiaomi", 30000),
+("Huawei MatePad 11", "Huawei", 35000),
+("Sony Xperia 10 III", "Sony", 40000);
+
+CREATE TABLE MobileSales(
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_id INT,
+    quantity INT,
+    total_price INT(6),
+    sale_date DATE,
+    FOREIGN KEY (item_id) REFERENCES mobile_and_tablets(item_id)
+);
+
+INSERT INTO MobileSales(item_id, quantity, total_price, sale_date)
+VALUES
+(1, 2, 240000, '2024-05-01'),
+(3, 1, 90000, '2024-05-03'),
+(5, 1, 80000, '2024-05-05'),
+(7, 3, 45000, '2024-05-07'),
+(9, 2, 160000, '2024-05-10'),
+(11, 1, 70000, '2024-05-12'),
+(13, 4, 220000, '2024-05-15'),
+(15, 2, 120000, '2024-05-18'),
+(17, 3, 165000, '2024-05-20');
+
+CREATE TABLE men_fashion(
+    item_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_name VARCHAR(100),
+    brand_name VARCHAR(50),
+    item_price INT(6)
+); 
+
+
+INSERT INTO men_fashion(item_name, brand_name, item_price)
+VALUES
+("Cotton Crewneck T-Shirt", "H&M", 1500),
+("Slim Fit Jeans", "Levi's", 4000),
+("Classic Leather Belt", "Dockers", 2500),
+("Casual Sneakers", "Nike", 6000),
+("Cotton Polo Shirt", "Ralph Lauren", 3500),
+("Chino Pants", "Gap", 3000),
+("Oxford Button-Down Shirt", "Banana Republic", 4500),
+("Denim Jacket", "Wrangler", 5500),
+("Leather Wallet", "Fossil", 2000),
+("Leather Dress Shoes", "Clarks", 7000),
+("Wool Blend Overcoat", "Calvin Klein", 8000),
+("Sports Watch", "Timex", 3000),
+("Cotton Blend Shorts", "Under Armour", 2500),
+("Crew Socks (Pack of 6)", "Adidas", 1500),
+("V-Neck Sweater", "Tommy Hilfiger", 4500),
+("Cotton Chinos", "Express", 3500),
+("Casual Loafers", "Sperry", 6000),
+("Leather Briefcase", "Coach", 9000),
+("Aviator Sunglasses", "Ray-Ban", 5000);
+
+CREATE TABLE FashionSales (
+    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+    item_id INT,
+    quantity INT,
+    total_price INT(5),
+    sale_date DATE,
+    FOREIGN KEY (item_id) REFERENCES men_fashion(item_id)
+);
+
+INSERT INTO FashionSales (item_id, quantity, total_price, sale_date)
+VALUES
+(1, 3, 4500, '2024-05-01'),
+(3, 2, 6000, '2024-05-03'),
+(5, 1, 3500, '2024-05-05'),
+(7, 4, 18000, '2024-05-07'),
+(9, 5, 10000, '2024-05-10'),
+(11, 2, 9000, '2024-05-12'),
+(13, 3, 13500, '2024-05-15'),
+(15, 2, 9000, '2024-05-18'),
+(17, 1, 4500, '2024-05-20');
+
+
+
 
