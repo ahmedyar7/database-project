@@ -143,50 +143,51 @@ values
 (30, "Morphy Richards fan heater", 32000);
 
 
-Create table power_and_lighting(
-item_id int auto_increment,
-item_type VARCHAR(50) DEFAULT 'appliance',
-
-power_and_lighting_item_id int,
-item_name varchar(100),
-item_price int,
-
-PRIMARY KEY (item_id, item_type) , 
-FOREIGN KEY(power_and_lighting_item_id) REFerences applicances(item_id)
+-- Creating the power_and_lighting table
+CREATE TABLE power_and_lighting (
+    item_id INT AUTO_INCREMENT,
+    item_type VARCHAR(50) DEFAULT 'appliance',
+    power_and_lighting_item_id INT,
+    item_name VARCHAR(100),
+    item_price INT,
+    PRIMARY KEY (item_id), 
+    FOREIGN KEY (power_and_lighting_item_id) REFERENCES appliances(item_id)
 );
 
-insert into cooling_and_heating(power_and_lighting_item_id , item_name,item_price) 
-values
-(1, "Jesco Titanium series generator", 100000),
-(2, "Jesco Titanium series generator TXL-5000", 224521),
-(3, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Dual Generator With Official Warranty", 241242),
-(4, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Single Generator With Official Warranty", 331421),
-(5, "Super Asia 9 KVA Soundproof Canopy Epa 3 Standard Dual Generator With Official Warranty", 331351),
-(6, "Gree 9 KVA Soundproof Canopy Epa 3 Standard Single Generator With Official Warranty", 12531),
-(7, "Daikin 12 KVA Soundproof Generator", 215000),
-(8, "Panasonic 10 KVA Portable Generator", 198500),
-(9, "Mitsubishi 15 KVA Silent Generator", 290000),
-(10, "Samsung Heavy-Duty 11 KVA Generator", 270000),
-(11, "Hitachi 8 KVA Diesel Generator", 160000),
-(12, "Toshiba 9 KVA Backup Generator", 220000),
-(13, "LG 10 KVA Eco-Friendly Generator", 230000),
-(14, "Sharp 7 KVA Compact Generator", 150000),
-(15, "Fuji 14 KVA High-Performance Generator", 300000),
-(16, "Yamaha 6 KVA Inverter Generator", 140000),
-(17, "Suzuki 5 KVA Portable Generator", 120000),
-(18, "Honda 12 KVA Industrial Generator", 250000),
-(19, "Nissan 8 KVA Silent Generator", 175000),
-(20, "Kawasaki 10 KVA Heavy-Duty Generator", 210000),
-(21, "Hyundai 11 KVA Multi-Fuel Generator", 245000),
-(22, "Kia 13 KVA Durable Generator", 265000),
-(23, "Isuzu 9 KVA Long-Lasting Generator", 190000),
-(24, "Mazda 7 KVA Reliable Generator", 160000),
-(25, "Subaru 8 KVA Rugged Generator", 180000),
-(26, "Mitsubishi 10 KVA Silent Generator", 230000),
-(27, "Toyota 15 KVA High Capacity Generator", 310000),
-(28, "Daihatsu 6 KVA Economy Generator", 135000),
-(29, "Sony 5 KVA Efficient Generator", 125000),
-(30, "Sanyo 9 KVA Advanced Generator", 220000);
+-- Inserting data into power_and_lighting table
+INSERT INTO power_and_lighting (power_and_lighting_item_id, item_name, item_price) 
+VALUES
+    (1, "Jesco Titanium series generator", 100000),
+    (2, "Jesco Titanium series generator TXL-5000", 224521),
+    (3, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Dual Generator With Official Warranty", 241242),
+    (4, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Single Generator With Official Warranty", 331421),
+    (5, "Super Asia 9 KVA Soundproof Canopy Epa 3 Standard Dual Generator With Official Warranty", 331351),
+    (6, "Gree 9 KVA Soundproof Canopy Epa 3 Standard Single Generator With Official Warranty", 12531),
+    (7, "Daikin 12 KVA Soundproof Generator", 215000),
+    (8, "Panasonic 10 KVA Portable Generator", 198500),
+    (9, "Mitsubishi 15 KVA Silent Generator", 290000),
+    (10, "Samsung Heavy-Duty 11 KVA Generator", 270000),
+    (11, "Hitachi 8 KVA Diesel Generator", 160000),
+    (12, "Toshiba 9 KVA Backup Generator", 220000),
+    (13, "LG 10 KVA Eco-Friendly Generator", 230000),
+    (14, "Sharp 7 KVA Compact Generator", 150000),
+    (15, "Fuji 14 KVA High-Performance Generator", 300000),
+    (16, "Yamaha 6 KVA Inverter Generator", 140000),
+    (17, "Suzuki 5 KVA Portable Generator", 120000),
+    (18, "Honda 12 KVA Industrial Generator", 250000),
+    (19, "Nissan 8 KVA Silent Generator", 175000),
+    (20, "Kawasaki 10 KVA Heavy-Duty Generator", 210000),
+    (21, "Hyundai 11 KVA Multi-Fuel Generator", 245000),
+    (22, "Kia 13 KVA Durable Generator", 265000),
+    (23, "Isuzu 9 KVA Long-Lasting Generator", 190000),
+    (24, "Mazda 7 KVA Reliable Generator", 160000),
+    (25, "Subaru 8 KVA Rugged Generator", 180000),
+    (26, "Mitsubishi 10 KVA Silent Generator", 230000),
+    (27, "Toyota 15 KVA High Capacity Generator", 310000),
+    (28, "Daihatsu 6 KVA Economy Generator", 135000),
+    (29, "Sony 5 KVA Efficient Generator", 125000),
+    (30, "Sanyo 9 KVA Advanced Generator", 220000);
+
 CREATE table automotives(
 
 item_id int auto_increment,
@@ -509,43 +510,48 @@ CREATE TABLE MobileSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
     quantity INT,
-    total_price INT(6),
+    total_price INT,
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES mobile_and_tablets(item_id)
 );
 
-INSERT INTO MobileSales(item_id, quantity, total_price, sale_date)
+
+INSERT INTO MobileSales (item_id, quantity, total_price, sale_date)
 VALUES
-(1, 2, 240000, '2024-05-01'),
-(3, 1, 90000, '2024-05-03'),
-(5, 1, 80000, '2024-05-05'),
-(7, 3, 45000, '2024-05-07'),
-(9, 2, 160000, '2024-05-10'),
-(11, 1, 70000, '2024-05-12'),
-(13, 4, 220000, '2024-05-15'),
-(15, 2, 120000, '2024-05-18'),
-(17, 3, 165000, '2024-05-20'),
-(19, 2, 240000, '2024-05-21'),
-(21, 1, 70000, '2024-05-22'),
-(23, 1, 95000, '2024-05-23'),
-(25, 3, 240000, '2024-05-24'),
-(27, 2, 100000, '2024-05-25'),
-(29, 1, 60000, '2024-05-26'),
-(2, 4, 400000, '2024-05-27'),
-(4, 3, 240000, '2024-05-28'),
-(6, 1, 70000, '2024-05-29'),
-(8, 2, 170000, '2024-05-30'),
-(10, 1, 80000, '2024-06-01'),
-(12, 3, 210000, '2024-06-02'),
-(14, 2, 190000, '2024-06-03'),
-(16, 1, 120000, '2024-06-04'),
-(18, 4, 400000, '2024-06-05'),
-(20, 3, 300000, '2024-06-06'),
-(22, 2, 180000, '2024-06-07'),
-(24, 1, 95000, '2024-06-08'),
-(26, 3, 270000, '2024-06-09'),
-(28, 2, 330000, '2024-06-10'),
-(30, 1, 60000, '2024-06-11');
+    (1, 2, 240000, '2024-05-01'),
+    (3, 1, 90000, '2024-05-03'),
+    (5, 1, 80000, '2024-05-05'),
+    (7, 3, 45000, '2024-05-07'),
+    (9, 2, 160000, '2024-05-10'),
+    (11, 1, 70000, '2024-05-12'),
+    (13, 4, 220000, '2024-05-15'),
+    (15, 2, 120000, '2024-05-18'),
+    (17, 3, 165000, '2024-05-20'),
+    (19, 2, 240000, '2024-05-21'),
+    (21, 1, 70000, '2024-05-22'),
+    (23, 1, 95000, '2024-05-23'),
+    (25, 3, 240000, '2024-05-24'),
+    (27, 2, 100000, '2024-05-25'),
+    (29, 1, 60000, '2024-05-26'),
+    (2, 4, 400000, '2024-05-27'),
+    (4, 3, 240000, '2024-05-28'),
+    (6, 1, 70000, '2024-05-29'),
+    (8, 2, 170000, '2024-05-30'),
+    (10, 1, 80000, '2024-06-01'),
+    (12, 3, 210000, '2024-06-02'),
+    (14, 2, 190000, '2024-06-03'),
+    (16, 1, 120000, '2024-06-04'),
+    (18, 4, 400000, '2024-06-05'),
+    (20, 3, 300000, '2024-06-06'),
+    (22, 2, 180000, '2024-06-07'),
+    (24, 1, 95000, '2024-06-08'),
+    (26, 3, 270000, '2024-06-09'),
+    (28, 2, 330000, '2024-06-10'),
+    (30, 1, 60000, '2024-06-11');
+
+    
+
+
 
 CREATE TABLE men_fashion(
 	item_id int auto_increment,
@@ -598,6 +604,9 @@ CREATE TABLE FashionSales (
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES men_fashion(item_id)
 );
+-- Check the existing entries in men_fashion
+SELECT * FROM men_fashion;-- 
+
 
 INSERT INTO FashionSales (item_id, quantity, total_price, sale_date)
 VALUES
@@ -687,8 +696,11 @@ CREATE TABLE Kids_Product (
 	PRIMARY KEY (item_id, item_type) ,
     
 	item_name Varchar(200),
-	item_prince INT
+	item_price INT
  );
+drop table Kids_Product;
+-- Check the structure of the Kids_Product table
+DESCRIBE Kids_Product;-- 
 
 INSERT INTO Kids_Product (item_name, item_price) VALUES
 ("Mini Merc Car", 5000),
@@ -730,7 +742,7 @@ CREATE TABLE Ride_On_Toys (
     
 	Ride_On_Toys_item_ID INT ,
 	item_name Varchar(200),
-	item_prince INT,
+	item_price INT,
  
  FOREIGN KEY(Ride_On_Toys_item_ID) REFerences Kids_Product(item_id)
  );
@@ -839,7 +851,7 @@ CREATE TABLE Orders (
 	FOREIGN KEY (item_id, item_type) REFERENCES cooling_and_heating(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES  mobile_and_tablets(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES medicalitems(item_id, item_type),
-	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computerpower_and_lighting(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES power_and_lighting(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES sports_items(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES tvs(item_id, item_type),
