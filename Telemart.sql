@@ -1,7 +1,7 @@
 CREATE database telemart;
 use telemart;
 
--- SET FOREIGN_KEY_CHECKS=0; use if any error cause becuase of PK or FK compusite key 
+-- SET FOREIGN_KEY_CHECKS=0; use if any error cause becuase of PK or FK composite key
 
 CREATE table applicances(
 
