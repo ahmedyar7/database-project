@@ -1,6 +1,8 @@
 CREATE database telemart;
 use telemart;
 
+SET FOREIGN_KEY_CHECKS=0; -- use if any error cause becuase of PK or FK composite key
+
 CREATE table applicances(
 
     item_id int auto_increment,
@@ -14,6 +16,7 @@ CREATE table applicances(
 
 
 insert into applicances(item_name,item_price)
+
 values
 ("Deulux Iron", 2700),
 ("Jescqo gold generator", 112700),
@@ -143,7 +146,7 @@ values
 (30, "Morphy Richards fan heater", 32000);
 
 
--- Creating the power_and_lighting table
+
 CREATE TABLE power_and_lighting (
     item_id INT AUTO_INCREMENT,
     item_type VARCHAR(50) DEFAULT 'appliance',
@@ -187,6 +190,7 @@ VALUES
     (28, "Daihatsu 6 KVA Economy Generator", 135000),
     (29, "Sony 5 KVA Efficient Generator", 125000),
     (30, "Sanyo 9 KVA Advanced Generator", 220000);
+
 
 CREATE table automotives(
 
@@ -234,7 +238,6 @@ VALUES
 ("Toyota Windshield Washer Fluid", 1000),
 ("Honda Tire Pressure Gauge", 3000),
 ("Kawasaki Motorcycle Helmet", 12000);
-
 
 
 
@@ -301,8 +304,7 @@ CREATE TABLE MedicalItems(
 -- Fill the MedicalItems table with medical items and their respective prices
 
 INSERT INTO MedicalItems(item_name, brand_name, item_price)
-VALUES
-("Digital Thermometer", "Omron", 15000),
+VALUES("Digital Thermometer", "Omron", 15000),
 ("Blood Pressure Monitor", "A&D Medical", 45000),
 ("Pulse Oximeter", "Contec", 30000),
 ("First Aid Kit", "Johnson & Johnson", 20000),
@@ -333,7 +335,6 @@ VALUES
 ("IV Stand", "Hicks", 12000),
 ("Patient Monitor", "Nihon Kohden", 250000),
 ("Surgical Mask (Pack of 100)", "Winner Medical", 20000);
-
 
 CREATE TABLE MedicalSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -463,6 +464,7 @@ VALUES
 (29, 1, 25000, '2024-06-10'),
 (30, 2, 56000, '2024-06-11');
 
+
 CREATE TABLE mobile_and_tablets(
 	item_id int auto_increment,
 	item_type VARCHAR(50) DEFAULT 'mobile_and_tablets',
@@ -518,7 +520,8 @@ CREATE TABLE MobileSales(
 
 INSERT INTO MobileSales (item_id, quantity, total_price, sale_date)
 VALUES
-    (1, 2, 240000, '2024-05-01'),
+
+  (1, 2, 240000, '2024-05-01'),
     (3, 1, 90000, '2024-05-03'),
     (5, 1, 80000, '2024-05-05'),
     (7, 3, 45000, '2024-05-07'),
@@ -548,8 +551,6 @@ VALUES
     (26, 3, 270000, '2024-06-09'),
     (28, 2, 330000, '2024-06-10'),
     (30, 1, 60000, '2024-06-11');
-
-    
 
 
 
@@ -600,7 +601,7 @@ CREATE TABLE FashionSales (
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
     quantity INT,
-    total_price INT(5),
+    total_price INT,
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES men_fashion(item_id)
 );
@@ -698,11 +699,9 @@ CREATE TABLE Kids_Product (
 	item_name Varchar(200),
 	item_price INT
  );
-drop table Kids_Product;
--- Check the structure of the Kids_Product table
-DESCRIBE Kids_Product;-- 
 
 INSERT INTO Kids_Product (item_name, item_price) VALUES
+
 ("Mini Merc Car", 5000),
 ("Writing Tablet", 499),
 ("Nail Trimmer", 499),
@@ -747,6 +746,7 @@ CREATE TABLE Ride_On_Toys (
  FOREIGN KEY(Ride_On_Toys_item_ID) REFerences Kids_Product(item_id)
  );
  
+
 INSERT INTO Kids_Product (item_name, item_price) VALUES
 ("Mercedes Ride On Jeep", 35999),
 ("BMW Kids Ride On Jeep", 74999),
@@ -790,6 +790,7 @@ INSERT INTO Kids_Product (item_name, item_price) VALUES
  User_Password Varchar(255),
  User_Address Varchar(255)
  );
+
 
 INSERT INTO Users (User_Name, User_Email, User_Password, User_Address) VALUES
 ("Hamza", "Hamza@example.com", "2342sdf", "XYZ Street Quetta"),
@@ -851,13 +852,18 @@ CREATE TABLE Orders (
 	FOREIGN KEY (item_id, item_type) REFERENCES cooling_and_heating(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES  mobile_and_tablets(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES medicalitems(item_id, item_type),
+
+	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES power_and_lighting(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES sports_items(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES tvs(item_id, item_type),
-	FOREIGN KEY (item_id, item_type) REFERENCES ride_on_toys(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES ride_on_toys(item_id, item_type),	
+    FOREIGN KEY (item_id, item_type) REFERENCES  men_fashion(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer (item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type)
     );
+
 
 INSERT INTO Orders (User_id, item_type, item_id, payment_method, Total_amount, shipping_address, order_date) VALUES
 (1, 'appliance', 2, "Card", 50000, "XYZ Street Quetta", "2-2-2024"),
@@ -891,3 +897,5 @@ INSERT INTO Orders (User_id, item_type, item_id, payment_method, Total_amount, s
 (28, 'appliances', 54, "Cash", 32000, "WXY Street Karachi", "2-2-2024"),
 (29, 'electronics', 56, "Card", 48000, "ZAB Road Islamabad", "2-2-2024"),
 (30, 'fashion', 58, "Card", 9000, "CDE Street Lahore", "2-2-2024");
+
+
