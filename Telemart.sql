@@ -1,6 +1,8 @@
 CREATE database telemart;
 use telemart;
 
+SET FOREIGN_KEY_CHECKS=0; -- use if any error cause becuase of PK or FK composite key
+
 CREATE table applicances(
 
     item_id int auto_increment,
@@ -14,8 +16,7 @@ CREATE table applicances(
 
 
 insert into applicances(item_name,item_price)
-values
-("Deulux Iron", 2700),
+values("Deulux Iron", 2700),
 ("Jescqo gold generator", 112700),
 ("WestPoint fan heater", 8700),
 ("Rechargeable juice squeezer", 3700),
@@ -64,6 +65,7 @@ FOREIGN KEY(washing_machines_item_id) REFerences applicances(item_id)
 );
 insert into washing_machines(washing_machines_item_id, item_name,item_price) 
 values
+
 (1, "Dawlance Fully loaded Automatic washing machine", 100000),
 (2, "Kenwood spin dryer washing machine", 124521),
 (3, "Haier Fully loaded Automatic washing machine", 541242),
@@ -94,6 +96,7 @@ values
 (28, "Westpoint top load washing machine", 135000),
 (29, "Blue Star semi-automatic washing machine", 122000),
 (30, "General Electric automatic washing machine", 210000);
+
 
 
 Create table cooling_and_heating(
@@ -143,21 +146,20 @@ values
 (30, "Morphy Richards fan heater", 32000);
 
 
--- Creating the power_and_lighting table
-CREATE TABLE power_and_lighting (
-    item_id INT AUTO_INCREMENT,
-    item_type VARCHAR(50) DEFAULT 'appliance',
-    power_and_lighting_item_id INT,
-    item_name VARCHAR(100),
-    item_price INT,
-    PRIMARY KEY (item_id), 
-    FOREIGN KEY (power_and_lighting_item_id) REFERENCES appliances(item_id)
-);
+Create table power_and_lighting(
+item_id int auto_increment,
+item_type VARCHAR(50) DEFAULT 'appliance',
 
--- Inserting data into power_and_lighting table
-INSERT INTO power_and_lighting (power_and_lighting_item_id, item_name, item_price) 
-VALUES
-    (1, "Jesco Titanium series generator", 100000),
+power_and_lighting_item_id int,
+item_name varchar(100),
+item_price int,
+
+PRIMARY KEY (item_id, item_type) , 
+FOREIGN KEY(power_and_lighting_item_id) REFerences applicances(item_id)
+);
+ insert into power_and_lighting (power_and_lighting_item_id , item_name , item_price) 
+values
+  (1, "Jesco Titanium series generator", 100000),
     (2, "Jesco Titanium series generator TXL-5000", 224521),
     (3, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Dual Generator With Official Warranty", 241242),
     (4, "Jasco 9 KVA Soundproof Canopy Epa 3 Standard Single Generator With Official Warranty", 331421),
@@ -188,6 +190,8 @@ VALUES
     (29, "Sony 5 KVA Efficient Generator", 125000),
     (30, "Sanyo 9 KVA Advanced Generator", 220000);
 
+
+
 CREATE table automotives(
 
 item_id int auto_increment,
@@ -201,8 +205,8 @@ PRIMARY KEY (item_id, item_type)
 
 -- Main Automotive table table 
 
-INSERT INTO automotives(item_name, item_price)
-VALUES
+insert into automotives(item_name,item_price)
+values
 ("Car dashboard cruise ship", 2700),
 ("GPS tracker", 5000),
 ("Helicopter dashboard", 8000),
@@ -238,7 +242,6 @@ VALUES
 
 
 
-
 CREATE table Tvs(
 	item_id int auto_increment,
 	item_type VARCHAR(50) DEFAULT 'Tvs',
@@ -270,21 +273,7 @@ VALUES
 ("Mini LED TV 38 inches", "Samsung", 180000),
 ("Portable TV 24 inches", "Sony", 80000),
 ("Outdoor TV 65 inches", "LG", 700000),
-("Projector TV 100 inches", "Sony", 900000),
-("LED TV 40 inches", "Toshiba", 170000),
-("Smart TV 50 inches", "Sharp", 380000),
-("4K Ultra HD TV 65 inches", "Panasonic", 620000),
-("OLED TV 55 inches", "TCL", 340000),
-("QLED TV 55 inches", "Hisense", 330000),
-("Android TV 43 inches", "Xiaomi", 220000),
-("Curved TV 49 inches", "Haier", 270000),
-("Plasma TV 60 inches", "Philips", 420000),
-("LCD TV 32 inches", "Acer", 140000),
-("HD Ready TV 28 inches", "Changhong", 90000),
-("Full HD TV 40 inches", "Hitachi", 200000),
-("Ultra Slim TV 48 inches", "Skyworth", 290000),
-("3D TV 47 inches", "Konka", 310000);
-
+("Projector TV 100 inches", "Sony", 900000);
 
 CREATE TABLE MedicalItems(
 	item_id int auto_increment,
@@ -301,8 +290,7 @@ CREATE TABLE MedicalItems(
 -- Fill the MedicalItems table with medical items and their respective prices
 
 INSERT INTO MedicalItems(item_name, brand_name, item_price)
-VALUES
-("Digital Thermometer", "Omron", 15000),
+VALUES("Digital Thermometer", "Omron", 15000),
 ("Blood Pressure Monitor", "A&D Medical", 45000),
 ("Pulse Oximeter", "Contec", 30000),
 ("First Aid Kit", "Johnson & Johnson", 20000),
@@ -333,7 +321,6 @@ VALUES
 ("IV Stand", "Hicks", 12000),
 ("Patient Monitor", "Nihon Kohden", 250000),
 ("Surgical Mask (Pack of 100)", "Winner Medical", 20000);
-
 
 CREATE TABLE MedicalSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -463,6 +450,7 @@ VALUES
 (29, 1, 25000, '2024-06-10'),
 (30, 2, 56000, '2024-06-11');
 
+
 CREATE TABLE mobile_and_tablets(
 	item_id int auto_increment,
 	item_type VARCHAR(50) DEFAULT 'mobile_and_tablets',
@@ -505,7 +493,6 @@ VALUES
 ("Huawei P50 Pro", "Huawei", 100000),
 ("Oppo Reno 7 Pro", "Oppo", 75000);
 
-
 CREATE TABLE MobileSales(
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
@@ -515,10 +502,9 @@ CREATE TABLE MobileSales(
     FOREIGN KEY (item_id) REFERENCES mobile_and_tablets(item_id)
 );
 
-
-INSERT INTO MobileSales (item_id, quantity, total_price, sale_date)
+INSERT INTO MobileSales(item_id, quantity, total_price, sale_date)
 VALUES
-    (1, 2, 240000, '2024-05-01'),
+  (1, 2, 240000, '2024-05-01'),
     (3, 1, 90000, '2024-05-03'),
     (5, 1, 80000, '2024-05-05'),
     (7, 3, 45000, '2024-05-07'),
@@ -548,9 +534,6 @@ VALUES
     (26, 3, 270000, '2024-06-09'),
     (28, 2, 330000, '2024-06-10'),
     (30, 1, 60000, '2024-06-11');
-
-    
-
 
 
 CREATE TABLE men_fashion(
@@ -600,13 +583,10 @@ CREATE TABLE FashionSales (
     sale_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT,
     quantity INT,
-    total_price INT(5),
+    total_price INT,
     sale_date DATE,
     FOREIGN KEY (item_id) REFERENCES men_fashion(item_id)
 );
--- Check the existing entries in men_fashion
-SELECT * FROM men_fashion;-- 
-
 
 INSERT INTO FashionSales (item_id, quantity, total_price, sale_date)
 VALUES
@@ -688,7 +668,6 @@ VALUES
 
 
 
-
 -- Primary table for kids product
 CREATE TABLE Kids_Product (
 	item_id int auto_increment,
@@ -696,13 +675,10 @@ CREATE TABLE Kids_Product (
 	PRIMARY KEY (item_id, item_type) ,
     
 	item_name Varchar(200),
-	item_price INT
+	item_prince INT
  );
-drop table Kids_Product;
--- Check the structure of the Kids_Product table
-DESCRIBE Kids_Product;-- 
 
-INSERT INTO Kids_Product (item_name, item_price) VALUES
+Insert Into Kids_Product  (item_name,item_prince)Value 
 ("Mini Merc Car", 5000),
 ("Writing Tablet", 499),
 ("Nail Trimmer", 499),
@@ -742,12 +718,12 @@ CREATE TABLE Ride_On_Toys (
     
 	Ride_On_Toys_item_ID INT ,
 	item_name Varchar(200),
-	item_price INT,
+	item_prince INT,
  
  FOREIGN KEY(Ride_On_Toys_item_ID) REFerences Kids_Product(item_id)
  );
  
-INSERT INTO Kids_Product (item_name, item_price) VALUES
+Insert Into Kids_Product  (item_name,item_prince)Value 
 ("Mercedes Ride On Jeep", 35999),
 ("BMW Kids Ride On Jeep", 74999),
 ("Kids 4 Wheels Ride On Jeep", 40000),
@@ -778,7 +754,6 @@ INSERT INTO Kids_Product (item_name, item_price) VALUES
 ("BYD Kids Ride On Car", 32000),
 ("Dongfeng Kids Ride On Jeep", 38000);
 
-
  
  
  -- User account table 
@@ -791,9 +766,7 @@ INSERT INTO Kids_Product (item_name, item_price) VALUES
  User_Address Varchar(255)
  );
 
-INSERT INTO Users (User_Name, User_Email, User_Password, User_Address) VALUES
-("Hamza", "Hamza@example.com", "2342sdf", "XYZ Street Quetta"),
-("Ahmed", "Ahmed@example.com", "2342sdf", "XYZ Street Quetta"),
+Insert Into Users  (User_Name , User_Email , User_Password , User_Address)  Value 
 ("Ali", "Ali@example.com", "sdaf987", "ABC Road Lahore"),
 ("Fatima", "Fatima@example.com", "kjsdf238", "DEF Street Karachi"),
 ("Usman", "Usman@example.com", "dfg5643", "GHI Road Islamabad"),
@@ -851,15 +824,17 @@ CREATE TABLE Orders (
 	FOREIGN KEY (item_id, item_type) REFERENCES cooling_and_heating(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES  mobile_and_tablets(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES medicalitems(item_id, item_type),
-	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES power_and_lighting(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES sports_items(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES tvs(item_id, item_type),
-	FOREIGN KEY (item_id, item_type) REFERENCES ride_on_toys(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES ride_on_toys(item_id, item_type),	
+    FOREIGN KEY (item_id, item_type) REFERENCES  men_fashion(item_id, item_type),
+	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer (item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type)
     );
 
-INSERT INTO Orders (User_id, item_type, item_id, payment_method, Total_amount, shipping_address, order_date) VALUES
+Insert Into Orders  ( User_id , item_type, item_id , payment_method , Total_amount , shipping_address , order_date)  Value 
 (1, 'appliance', 2, "Card", 50000, "XYZ Street Quetta", "2-2-2024"),
 (1, 'washing_machines', 2, "Card", 50000, "XYZ Street Quetta", "2-2-2024"),
 (2, 'ride_on_toys', 2, "Card", 50000, "XYZ Street Quetta", "2-2-2024"),
@@ -891,3 +866,4 @@ INSERT INTO Orders (User_id, item_type, item_id, payment_method, Total_amount, s
 (28, 'appliances', 54, "Cash", 32000, "WXY Street Karachi", "2-2-2024"),
 (29, 'electronics', 56, "Card", 48000, "ZAB Road Islamabad", "2-2-2024"),
 (30, 'fashion', 58, "Card", 9000, "CDE Street Lahore", "2-2-2024");
+
