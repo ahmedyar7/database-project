@@ -1,6 +1,8 @@
 CREATE database telemart;
 use telemart;
 
+SET FOREIGN_KEY_CHECKS=0; -- use if any error cause becuase of PK or FK composite key
+
 CREATE table applicances(
 
     item_id int auto_increment,
@@ -96,8 +98,7 @@ item_price int,
 PRIMARY KEY (item_id, item_type) , 
 FOREIGN KEY(power_and_lighting_item_id) REFerences applicances(item_id)
 );
-
-insert into cooling_and_heating(power_and_lighting_item_id , item_name,item_price) 
+ insert into power_and_lighting (power_and_lighting_item_id , item_name , item_price) 
 values
 (1,"Jesco Titanium series generator",100000),
 (2,"Jesco Titanium series generator TXL-5000",224521),
@@ -527,5 +528,3 @@ Insert Into Orders  ( User_id , item_type, item_id , payment_method , Total_amou
 (1 , 'appliance',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ,
 (1 , 'washing_machines',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ,
 (2 , 'ride_on_toys',2,"Card", 50000," XYZ Street Quetta"  , "2-2-2024") ;
-
-
