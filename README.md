@@ -55,6 +55,6 @@
 1. **Clone the repository:** 📁
 
    ```bash
-   git clone https://github.com/yourusername/telemart-database.git
+   git clone https://github.com/ahmedyar7/database-project.git
    cd database-project
    ```
