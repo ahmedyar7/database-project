@@ -153,7 +153,7 @@ CREATE TABLE power_and_lighting (
     power_and_lighting_item_id INT,
     item_name VARCHAR(100),
     item_price INT,
-    PRIMARY KEY (item_id), 
+    PRIMARY KEY (item_id,item_type), 
     FOREIGN KEY (power_and_lighting_item_id) REFERENCES appliances(item_id)
 );
 
@@ -606,7 +606,6 @@ CREATE TABLE FashionSales (
     FOREIGN KEY (item_id) REFERENCES men_fashion(item_id)
 );
 -- Check the existing entries in men_fashion
-SELECT * FROM men_fashion;-- 
 
 
 INSERT INTO FashionSales (item_id, quantity, total_price, sale_date)
@@ -852,7 +851,6 @@ CREATE TABLE Orders (
 	FOREIGN KEY (item_id, item_type) REFERENCES cooling_and_heating(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES  mobile_and_tablets(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES medicalitems(item_id, item_type),
-
 	FOREIGN KEY (item_id, item_type) REFERENCES washing_machines(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES gaming_and_computer(item_id, item_type),
 	FOREIGN KEY (item_id, item_type) REFERENCES power_and_lighting(item_id, item_type),
@@ -897,5 +895,4 @@ INSERT INTO Orders (User_id, item_type, item_id, payment_method, Total_amount, s
 (28, 'appliances', 54, "Cash", 32000, "WXY Street Karachi", "2-2-2024"),
 (29, 'electronics', 56, "Card", 48000, "ZAB Road Islamabad", "2-2-2024"),
 (30, 'fashion', 58, "Card", 9000, "CDE Street Lahore", "2-2-2024");
-
 
