@@ -2,7 +2,7 @@
 
 ## Project Overview 📚
 
-This project aims to replicate the entire database of the Telemart website into MySQL. The project includes setting up the database schema, populating it with sample data, performing various queries, and creating an Entity-Relationship Diagram (ERD) for the database.
+This project aims to replicate the entire database of the Telemart website into MySQL. The project includes setting up the database schema, populating it with sample data, performing various queries, and creating an Entity-Relationship Diagram (ERD) for the database..
 
 ## Contributors🙌
 <span>
