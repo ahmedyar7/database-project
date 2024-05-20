@@ -18,7 +18,7 @@
     <a href="https://www.github.com/Gulzrn">
         <img alt="Static Badge" src="https://img.shields.io/badge/Gul%20Zareen-%20%23320954?style=for-the-badge&logo=github">
     </a>
-    <a href="https://www.github.com/Gulzrn">
+    <a href="https://www.github.com/iqrakhan25">
         <img alt="Static Badge" src="https://img.shields.io/badge/Iqra%20Khan-%20%236c5370?style=for-the-badge&logo=github">
     </a>
     <a href="https://www.github.com/Sawera182">
